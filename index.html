@@ -67,17 +67,19 @@
     border-bottom:1px solid var(--line);
   }
   .topbar-in{
-    max-width:1080px;margin:0 auto;padding:10px 16px;
-    display:flex;align-items:center;gap:14px;
+    max-width:1200px;margin:0 auto;padding:10px 16px;
+    display:flex;align-items:center;gap:12px;
   }
-  .brand{display:flex;align-items:baseline;gap:10px;text-decoration:none;margin-right:auto}
-  .brand .b-name{font-family:"Shippori Mincho B1",serif;font-weight:800;font-size:19px;letter-spacing:.04em}
+  .brand{display:flex;align-items:baseline;gap:8px;text-decoration:none;margin-right:auto;flex:none}
+  .brand .b-name{font-family:"Shippori Mincho B1",serif;font-weight:800;font-size:19px;letter-spacing:.04em;white-space:nowrap}
   .brand .b-name em{font-style:normal;color:var(--aka)}
-  .brand .b-sub{font-size:11px;color:var(--ink-soft);letter-spacing:.14em}
-  .topnav{display:none;gap:22px;font-size:14px;font-weight:700}
-  .topnav a{text-decoration:none;color:var(--ink-soft)}
+  .brand .b-sub{font-size:11px;color:var(--ink-soft);letter-spacing:.14em;white-space:nowrap}
+  .topnav{display:none;gap:6px 14px;font-size:13px;font-weight:700;flex-wrap:wrap;justify-content:flex-end}
+  .topnav a{text-decoration:none;color:var(--ink-soft);white-space:nowrap}
   .topnav a:hover{color:var(--aka)}
   @media(min-width:820px){ .topnav{display:flex} }
+  @media(min-width:1100px){ .topnav{flex-wrap:nowrap} }
+  @media(max-width:1400px){ .brand .b-sub{display:none} }
   @media(max-width:560px){
     .brand .b-sub{display:none}
     .brand .b-name{white-space:nowrap;font-size:17px}
@@ -139,13 +141,29 @@
     display:flex;gap:6px;z-index:3;
   }
   .noren span{
-    background:var(--aka-deep);
+    background:#22405f;
     color:#fdf3df;
     font-family:"Shippori Mincho B1",serif;font-weight:800;
     writing-mode:vertical-rl;letter-spacing:.35em;
     font-size:15px;padding:18px 7px 26px;
     border-radius:0 0 6px 6px;
     box-shadow:0 4px 10px rgba(0,0,0,.35);
+    transform-origin:top center;
+  }
+  @media (prefers-reduced-motion: no-preference){
+    .noren.is-swaying span{animation:norenSway 1.25s ease-out both}
+    .noren.is-swaying span:nth-child(2){animation-delay:.075s}
+    .noren.is-swaying span:nth-child(3){animation-delay:.15s}
+    .noren.is-swaying span:nth-child(4){animation-delay:.225s}
+    .noren.is-swaying span:nth-child(5){animation-delay:.3s}
+    @keyframes norenSway{
+      0%{transform:rotate(0deg)}
+      18%{transform:rotate(1.5deg)}
+      42%{transform:rotate(-1.05deg)}
+      64%{transform:rotate(.6deg)}
+      82%{transform:rotate(-.28deg)}
+      100%{transform:rotate(0deg)}
+    }
   }
   .hero-in{
     position:absolute;inset:0;z-index:2;pointer-events:none;
@@ -1343,10 +1361,13 @@
   var slides = hero.querySelectorAll('.hero-slide');
   var dots = hero.querySelectorAll('.hero-dot');
   var caption = document.getElementById('heroCaption');
+  var noren = hero.querySelector('.noren');
   var prevBtn = document.getElementById('heroPrev');
   var nextBtn = document.getElementById('heroNext');
   var current = 0;
   var timer = null;
+  var swayTimer = null;
+  var firstRun = true;
   var INTERVAL = 5000;
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -1366,6 +1387,19 @@
     if(caption){
       caption.textContent = slides[current].getAttribute('data-caption') || '';
     }
+    if(firstRun){ firstRun = false; }
+    else{ swayNoren(); }
+  }
+  function swayNoren(){
+    if(!noren || reduceMotion) return;
+    noren.classList.remove('is-swaying');
+    void noren.offsetWidth;
+    noren.classList.add('is-swaying');
+    if(swayTimer !== null){ window.clearTimeout(swayTimer); }
+    swayTimer = window.setTimeout(function(){
+      noren.classList.remove('is-swaying');
+      swayTimer = null;
+    }, 1800);
   }
   function next(){ goTo(current + 1); }
   function prev(){ goTo(current - 1); }
