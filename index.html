@@ -74,11 +74,11 @@
   .brand .b-name{font-family:"Shippori Mincho B1",serif;font-weight:800;font-size:19px;letter-spacing:.04em;white-space:nowrap}
   .brand .b-name em{font-style:normal;color:var(--aka)}
   .brand .b-sub{font-size:11px;color:var(--ink-soft);letter-spacing:.14em;white-space:nowrap}
-  .topnav{display:none;gap:6px 14px;font-size:13px;font-weight:700;flex-wrap:wrap;justify-content:flex-end}
+  .topnav{display:none;gap:6px 12px;font-size:13px;font-weight:700;flex-wrap:wrap;justify-content:flex-end}
   .topnav a{text-decoration:none;color:var(--ink-soft);white-space:nowrap}
   .topnav a:hover{color:var(--aka)}
   @media(min-width:820px){ .topnav{display:flex} }
-  @media(min-width:1100px){ .topnav{flex-wrap:nowrap} }
+  @media(min-width:1100px){ .topnav{flex-wrap:nowrap;gap:6px 10px;font-size:12.5px;letter-spacing:-.01em} }
   @media(max-width:1400px){ .brand .b-sub{display:none} }
   @media(max-width:560px){
     .brand .b-sub{display:none}
@@ -476,6 +476,23 @@
   .price-list .nm small{display:block;font-weight:500;color:var(--ink-soft);font-size:12.5px}
   .price-list .pr{font-weight:900;white-space:nowrap;color:var(--ink)}
   .price-list .pr.free{color:var(--ink-soft);font-weight:700;font-size:13px}
+  /* feature */
+  #feature{background:var(--surface)}
+  .feat-grid{display:grid;gap:18px;grid-template-columns:1fr;align-items:stretch}
+  @media(min-width:640px){.feat-grid{grid-template-columns:1fr 1fr}}
+  @media(min-width:960px){.feat-grid{grid-template-columns:repeat(3,1fr)}}
+  .feat{
+    background:var(--bg-soft);border:1px solid var(--line);border-radius:12px;
+    padding:22px 22px 20px;box-shadow:var(--shadow);
+  }
+  .feat .ic{
+    width:38px;height:38px;border-radius:50%;background:var(--bg);
+    border:1px solid var(--line);display:flex;align-items:center;justify-content:center;
+    font-size:17px;line-height:1;margin-bottom:13px;
+  }
+  .feat h3{font-family:"Shippori Mincho B1",serif;font-weight:800;font-size:18px;margin:0 0 7px;line-height:1.5}
+  .feat p{margin:0;color:var(--ink-soft);font-size:14.5px;line-height:1.75}
+
   /* about */
   .about-grid{display:grid;gap:30px;grid-template-columns:1fr;align-items:start}
   @media(min-width:820px){.about-grid{grid-template-columns:1.15fr .85fr}}
@@ -672,6 +689,7 @@
       <a href="#menu">メニュー</a>
       <a href="#hiden">秘伝の味</a>
       <a href="#grandmenu">グランドメニュー</a>
+      <a href="#feature">特長</a>
       <a href="#about">お店について</a>
       <a href="#access">アクセス</a>
       <a href="#media">メディア・動画・SNS</a>
@@ -1061,6 +1079,48 @@
         </div>
       </div>
       <p class="price-note">※ メニュー内容は季節により変わることがあります。殻付きの「焼き牡蠣」は現在販売を中止しています。</p>
+    </div>
+  </section>
+
+  <!-- 2.7 特長 -->
+  <section id="feature">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="kicker">特長</span>
+        <h2>ももちゃんの特長</h2>
+      </div>
+      <div class="feat-grid">
+        <div class="feat">
+          <div class="ic" aria-hidden="true">🔥</div>
+          <h3>大きな鉄板でライブ感</h3>
+          <p>店内の大きな鉄板で次々に焼き上がる様子は、見ているだけでも楽しい光景。焼きたてならではの香ばしさとキャベツの甘みをお楽しみください。</p>
+        </div>
+        <div class="feat">
+          <div class="ic" aria-hidden="true">👨‍👩‍👧</div>
+          <h3>お子様連れ歓迎</h3>
+          <p>子ども椅子をご用意し、ベビーカーのままのご入店にも対応しています。ご家族での宮島観光の昼食に、安心してお立ち寄りください。</p>
+        </div>
+        <div class="feat">
+          <div class="ic" aria-hidden="true">🌏</div>
+          <h3>訪日観光客にも対応</h3>
+          <p>世界遺産の島・宮島には世界中からお客様が訪れます。英語メニューをご用意し、海外からのお客様にも広島の味をお届けしています。</p>
+        </div>
+        <div class="feat">
+          <div class="ic" aria-hidden="true">🦪</div>
+          <h3>宮島・広島の食材</h3>
+          <p>広島の牡蠣、宮島名物のあなご竹輪など、地元の味覚をお好み焼きにのせて。土地の恵みを一枚で味わえるのが、ももちゃんの楽しみです。</p>
+        </div>
+        <div class="feat">
+          <div class="ic" aria-hidden="true">🥡</div>
+          <h3>テイクアウト対応</h3>
+          <p>お好み焼きのテイクアウトも可能です。フェリーの待ち時間や、食べ歩きのお供にもご利用ください。</p>
+        </div>
+        <div class="feat">
+          <div class="ic" aria-hidden="true">💳</div>
+          <h3>キャッシュレス対応</h3>
+          <p>お支払いは現金のほか、クレジットカード、PayPayに対応しています。ご予算の目安はお一人様 1,000〜2,000円です。</p>
+        </div>
+      </div>
     </div>
   </section>
 
